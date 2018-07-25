@@ -5,11 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:osd_buttons"
         mc:Ignorable="d"
-        Title="MainWindow" Height="646.366" Width="1211.936" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" AllowsTransparency="True" Loaded="Window_Loaded">
+        Title="MainWindow" Height="800" Width="1280
+        " ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" AllowsTransparency="True" Loaded="Window_Loaded">
     <Window.Background>
         <SolidColorBrush Opacity="0" Color="White"/>
     </Window.Background>
     <Grid>
-        <Button x:Name="buttonKeyboard" Content="^" HorizontalAlignment="Right" Margin="0,0,10,40" VerticalAlignment="Bottom" Width="47" FontSize="36" Click="buttonKeyboard_Click" Height="44"/>
+        <Button x:Name="buttonKeyboard" Content="^" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="28" FontSize="20" Click="buttonKeyboard_Click" Height="26"/>
+        <Button x:Name="buttonClose" Content="X" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="28" FontSize="16" Click="buttonClose_Click" Height="26"/>
+        <Rectangle x:Name="rectangle_1" HorizontalAlignment="Left" Height="53" Margin="245,0,0,10" Stroke="Red" VerticalAlignment="Bottom" Width="56"/>
+        <Rectangle x:Name="rectangle_2" HorizontalAlignment="Left" Height="53" Margin="316,0,0,10" Stroke="Red" VerticalAlignment="Bottom" Width="56"/>
+        <Rectangle x:Name="rectangle_3" HorizontalAlignment="Left" Height="53" Margin="386,0,0,10" Stroke="Red" VerticalAlignment="Bottom" Width="56"/>
+        <Rectangle x:Name="rectangle_4" HorizontalAlignment="Left" Height="53" Margin="456,0,0,10" Stroke="Red" VerticalAlignment="Bottom" Width="56"/>
+        <Rectangle x:Name="rectangle_5" HorizontalAlignment="Left" Height="53" Margin="526,0,0,10" Stroke="Red" VerticalAlignment="Bottom" Width="56"/>
+        <Rectangle x:Name="rectangle_6" HorizontalAlignment="Left" Height="53" Margin="594,0,0,10" Stroke="Red" VerticalAlignment="Bottom" Width="56"/>
+        <Rectangle x:Name="rectangle_7" HorizontalAlignment="Left" Height="53" Margin="666,0,0,10" Stroke="Red" VerticalAlignment="Bottom" Width="56"/>
+        <Rectangle x:Name="rectangle_8" HorizontalAlignment="Left" Height="53" Margin="737,0,0,10" Stroke="Red" VerticalAlignment="Bottom" Width="56"/>
+        <Rectangle x:Name="rectangle_9" HorizontalAlignment="Left" Height="53" Margin="806,0,0,10" Stroke="Red" VerticalAlignment="Bottom" Width="56"/>
+        <Rectangle x:Name="rectangle_0" HorizontalAlignment="Left" Height="53" Margin="876,0,0,10" Stroke="Red" VerticalAlignment="Bottom" Width="56"/>
     </Grid>
 </Window>
