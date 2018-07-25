@@ -1,0 +1,15 @@
+﻿<Window x:Class="osd_buttons.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:osd_buttons"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="646.366" Width="1211.936" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" AllowsTransparency="True" Loaded="Window_Loaded">
+    <Window.Background>
+        <SolidColorBrush Opacity="0" Color="White"/>
+    </Window.Background>
+    <Grid>
+        <Button x:Name="buttonKeyboard" Content="^" HorizontalAlignment="Right" Margin="0,0,10,40" VerticalAlignment="Bottom" Width="47" FontSize="36" Click="buttonKeyboard_Click" Height="44"/>
+    </Grid>
+</Window>
