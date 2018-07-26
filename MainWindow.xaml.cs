@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
+using Interceptor;
 
 namespace osd_buttons
 {
@@ -30,6 +31,8 @@ namespace osd_buttons
         {
             InitializeComponent();
         }
+
+        Input input = new Input();
 
         private KeyboardHook _hook;
         //InputSimulator sim = new InputSimulator();
@@ -57,6 +60,8 @@ namespace osd_buttons
             _hook = new KeyboardHook();
             _hook.KeyDown += new KeyboardHook.HookEventHandler(OnHookKeyDown);
             setvis();
+            input.KeyboardFilterMode = KeyboardFilterMode.All;
+            input.Load();
 
         }
         // keyboard hook handler
@@ -77,54 +82,34 @@ namespace osd_buttons
                 switch(place)
                 {
                     case 1:
-                        keybd_event(VK_1, 0, KEYEVENTF_EXTENDEDKEY, 0);
-                        Thread.Sleep(50);
-                        keybd_event(VK_1, 0, KEYEVENTF_KEYUP, 0);
+                        input.SendKeys(Keys.One);
                         break;
                     case 2:
-                        keybd_event(VK_2, 0, KEYEVENTF_EXTENDEDKEY, 0);
-                        Thread.Sleep(50);
-                        keybd_event(VK_2, 0, KEYEVENTF_KEYUP, 0);
+                        input.SendKeys(Keys.Two);
                         break;
                     case 3:
-                        keybd_event(VK_3, 0, KEYEVENTF_EXTENDEDKEY, 0);
-                        Thread.Sleep(50);
-                        keybd_event(VK_3, 0, KEYEVENTF_KEYUP, 0);
+                        input.SendKeys(Keys.Three);
                         break;
                     case 4:
-                        keybd_event(VK_4, 0, KEYEVENTF_EXTENDEDKEY, 0);
-                        Thread.Sleep(50);
-                        keybd_event(VK_4, 0, KEYEVENTF_KEYUP, 0);
+                        input.SendKeys(Keys.Four);
                         break;
                     case 5:
-                        keybd_event(VK_5, 0, KEYEVENTF_EXTENDEDKEY, 0);
-                        Thread.Sleep(50);
-                        keybd_event(VK_5, 0, KEYEVENTF_KEYUP, 0);
+                        input.SendKeys(Keys.Five);
                         break;
                     case 6:
-                        keybd_event(VK_6, 0, KEYEVENTF_EXTENDEDKEY, 0);
-                        Thread.Sleep(50);
-                        keybd_event(VK_6, 0, KEYEVENTF_KEYUP, 0);
+                        input.SendKeys(Keys.Six);
                         break;
                     case 7:
-                        keybd_event(VK_7, 0, KEYEVENTF_EXTENDEDKEY, 0);
-                        Thread.Sleep(50);
-                        keybd_event(VK_7, 0, KEYEVENTF_KEYUP, 0);
+                        input.SendKeys(Keys.Seven);
                         break;
                     case 8:
-                        keybd_event(VK_8, 0, KEYEVENTF_EXTENDEDKEY, 0);
-                        Thread.Sleep(50);
-                        keybd_event(VK_8, 0, KEYEVENTF_KEYUP, 0);
+                        input.SendKeys(Keys.Eight);
                         break;
                     case 9:
-                        keybd_event(VK_9, 0, KEYEVENTF_EXTENDEDKEY, 0);
-                        Thread.Sleep(50);
-                        keybd_event(VK_9, 0, KEYEVENTF_KEYUP, 0);
+                        input.SendKeys(Keys.Nine);
                         break;
                     case 10:
-                        keybd_event(VK_0, 0, KEYEVENTF_EXTENDEDKEY, 0);
-                        Thread.Sleep(50);
-                        keybd_event(VK_0, 0, KEYEVENTF_KEYUP, 0);
+                        input.SendKeys(Keys.Zero);
                         break;
                     default:
                         break;
