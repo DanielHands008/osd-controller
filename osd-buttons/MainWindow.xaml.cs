@@ -36,7 +36,8 @@ namespace osd_buttons
         Point StickStartPoint = new Point(0, 0);
         Point StickCurrentPoint = new Point(0, 0);
         Point StickDeltaPoint = new Point(0, 0);
-        bool StickDown = false, left = false, right = false, up = false, down = false;
+        bool stickDown = false, left = false, right = false, up = false, down = false;
+        double distance = 0, angle = 0;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -112,13 +113,12 @@ namespace osd_buttons
             if (place == 9) rectangle_9.Visibility = Visibility.Visible; else rectangle_9.Visibility = Visibility.Hidden;
             if (place == 10) rectangle_0.Visibility = Visibility.Visible; else rectangle_0.Visibility = Visibility.Hidden;
         }
-
-
+        /*      
         protected override void OnManipulationStarted(ManipulationStartedEventArgs e)
         { 
             StickStartPoint = e.ManipulationOrigin;
             StickCurrentPoint = e.ManipulationOrigin;
-            StickDown = true;
+            stickDown = true;
 
         }
 
@@ -186,11 +186,165 @@ namespace osd_buttons
             if (down) {
                 KeyboardOutput.performKeyRelease(83);
             }
-            StickDown = up = down = left = right = false;
+            stickDown = up = down = left = right = false;
             StickDeltaPoint.X = 0;
             StickDeltaPoint.Y = 0;
         }
+        */
 
+        protected override void OnManipulationStarted(ManipulationStartedEventArgs e)
+        {
+            StickStartPoint = e.ManipulationOrigin;
+            StickCurrentPoint = e.ManipulationOrigin;
+            distance = 0;
+            angle = 0;
+            stickDown = true;
+        }
+
+        protected override void OnManipulationDelta(ManipulationDeltaEventArgs e)
+        {
+            StickCurrentPoint = e.ManipulationOrigin;
+            distance = Point.Subtract(StickStartPoint, StickCurrentPoint).Length;
+            angle = (Math.Atan2(StickCurrentPoint.Y - StickStartPoint.Y, StickCurrentPoint.X - StickStartPoint.X) * 180.0 / Math.PI) + 180;
+            int quadrant = 0;
+            if (angle < 22.5 || angle >= 337.5)
+            {
+                quadrant = 1;
+            }
+            if (angle >= 22.5 && angle < 67.5)
+            {
+                quadrant = 2;
+            }
+            if (angle >= 67.5 && angle < 112.5)
+            {
+                quadrant = 3;
+            }
+            if (angle >= 112.5 && angle < 157.5)
+            {
+                quadrant = 4;
+            }
+            if (angle >= 157.5 && angle < 202.5)
+            {
+                quadrant = 5;
+            }
+            if (angle >= 202.5 && angle < 247.5) {
+                quadrant = 6;
+            }
+            if (angle >= 247.5 && angle < 292.5)
+            {
+                quadrant = 7;
+            }
+            if (angle >= 292.5 && angle < 337.5)
+            {
+                quadrant = 8;
+            }
+            switch (quadrant)
+            {
+                case 1:
+                    wasdKeys(false, true, false, false);
+                    break;
+                case 2:
+                    wasdKeys(true, true, false, false);
+                    break;
+                case 3:
+                    wasdKeys(true, false, false, false);
+                    break;
+                case 4:
+                    wasdKeys(true, false, false, true);
+                    break;
+                case 5:
+                    wasdKeys(false, false, false, true);
+                    break;
+                case 6:
+                    wasdKeys(false, false, true, true);
+                    break;
+                case 7:
+                    wasdKeys(false, false, true, false);
+                    break;
+                case 8:
+                    wasdKeys(false, true, true, false);
+                    break;
+                default:
+                    wasdKeys(false, false, false, false);
+                    break;
+            }
+
+        }
+
+        protected override void OnManipulationCompleted(ManipulationCompletedEventArgs e)
+        {
+            stickDown = false;
+            wasdKeys(false, false, false, false);
+        }
+
+        void wasdKeys(bool iup, bool ileft, bool idown, bool iright)
+        {
+            if (iup)
+            {
+                if (!up)
+                {
+                    up = true;
+                    KeyboardOutput.performKeyDown(87);
+                }
+            }
+            else
+            {
+                if (up)
+                {
+                    up = false;
+                    KeyboardOutput.performKeyRelease(87);
+                }
+            }
+            if (ileft)
+            {
+                if (!left)
+                {
+                    left = true;
+                    KeyboardOutput.performKeyDown(65);
+                }
+            }
+            else
+            {
+                if (left)
+                {
+                    left = false;
+                    KeyboardOutput.performKeyRelease(65);
+                }
+                
+            }
+            if (idown)
+            {
+                if (!down)
+                {
+                    down = true;
+                    KeyboardOutput.performKeyDown(83);
+                }
+            }
+            else
+            {
+                if (down)
+                {
+                    down = false;
+                    KeyboardOutput.performKeyRelease(83);
+                }
+            }
+            if (iright)
+            {
+                if (!right)
+                {
+                    right = true;
+                    KeyboardOutput.performKeyDown(68);
+                }
+            }
+            else
+            {
+                if (right)
+                {
+                    right = false;
+                    KeyboardOutput.performKeyRelease(68);
+                }
+            }
+        }
 
         private void up_TouchDown(object sender, EventArgs e)
         {
