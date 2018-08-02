@@ -34,16 +34,17 @@
              d:DesignWidth="300">
             <!-- Setting IsManipulationEnabled here tells the UserControl 
          to execute the manipulation methods -->
-            <Ellipse Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="132" Margin="61,0,0,169" Stroke="Black" VerticalAlignment="Bottom" Width="132" IsManipulationEnabled="true"/>
+            <Ellipse Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="132" Margin="51,0,0,138" Stroke="Black" VerticalAlignment="Bottom" Width="132" IsManipulationEnabled="true" Opacity="0.3"/>
         </UserControl>
-        <Rectangle x:Name="rectangle_up" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="73" Margin="0,0,136,223" Stroke="Black" VerticalAlignment="Bottom" Width="44" TouchEnter="up_TouchDown" TouchLeave="up_TouchUp"/>
-        <Rectangle x:Name="rectangle_down" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="73" Margin="0,0,136,106" Stroke="Black" VerticalAlignment="Bottom" Width="44" TouchEnter="down_TouchDown" TouchLeave="down_TouchUp"/>
-        <Rectangle x:Name="rectangle_left" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="44" Margin="0,0,180,179" Stroke="Black" VerticalAlignment="Bottom" Width="73" TouchEnter="left_TouchDown" TouchLeave="left_TouchUp"/>
-        <Rectangle x:Name="rectangle_right" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="44" Margin="0,0,63,179" Stroke="Black" VerticalAlignment="Bottom" Width="73" TouchEnter="right_TouchDown" TouchLeave="right_TouchUp"/>
-        <Rectangle x:Name="rectangle_F12" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="42" Margin="0,56,51,0" Stroke="Black" VerticalAlignment="Top" Width="42" TouchEnter="F12_TouchDown" TouchLeave="F12_TouchUp"/>
-        <Ellipse x:Name="circle_Enter" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="68" Margin="0,131,51,0" Stroke="Black" VerticalAlignment="Top" Width="68" TouchEnter="enter_TouchDown" TouchLeave="enter_TouchUp"/>
-        <Ellipse x:Name="circle_up" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="68" Margin="0,218,51,0" Stroke="Black" VerticalAlignment="Top" Width="68" TouchEnter="end_TouchDown" TouchLeave="end_TouchUp"/>
-        <Ellipse x:Name="circle_ctrl" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="68" Margin="29,218,0,0" Stroke="Black" VerticalAlignment="Top" Width="68" TouchEnter="ctrl_TouchDown" TouchLeave="ctrl_TouchUp"/>
+        <Rectangle x:Name="rectangle_up" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="73" Margin="0,0,136,223" Stroke="Black" VerticalAlignment="Bottom" Width="44" TouchEnter="up_TouchDown" TouchLeave="up_TouchUp" Opacity="0.3"/>
+        <Rectangle x:Name="rectangle_down" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="73" Margin="0,0,136,106" Stroke="Black" VerticalAlignment="Bottom" Width="44" TouchEnter="down_TouchDown" TouchLeave="down_TouchUp" Opacity="0.3"/>
+        <Rectangle x:Name="rectangle_left" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="44" Margin="0,0,180,179" Stroke="Black" VerticalAlignment="Bottom" Width="73" TouchEnter="left_TouchDown" TouchLeave="left_TouchUp" Opacity="0.3"/>
+        <Rectangle x:Name="rectangle_right" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="44" Margin="0,0,63,179" Stroke="Black" VerticalAlignment="Bottom" Width="73" TouchEnter="right_TouchDown" TouchLeave="right_TouchUp" Opacity="0.3"/>
+        <Rectangle x:Name="rectangle_F12" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="59" Margin="0,56,51,0" Stroke="Black" VerticalAlignment="Top" Width="59" TouchEnter="F12_TouchDown" TouchLeave="F12_TouchUp" Opacity="0.3"/>
+        <Ellipse x:Name="circle_Enter" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="68" Margin="0,0,31,269" Stroke="Black" VerticalAlignment="Bottom" Width="68" TouchEnter="enter_TouchDown" TouchLeave="enter_TouchUp" Opacity="0.3"/>
+        <Ellipse x:Name="circle_up" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="68" Margin="0,0,219,269" Stroke="Black" VerticalAlignment="Bottom" Width="68" TouchEnter="end_TouchDown" TouchLeave="end_TouchUp" Opacity="0.3"/>
+        <Ellipse x:Name="circle_ctrl" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="68" Margin="29,0,0,349" Stroke="Black" VerticalAlignment="Bottom" Width="68" TouchEnter="ctrl_TouchDown" TouchLeave="ctrl_TouchUp" Opacity="0.3"/>
+        <Rectangle x:Name="rectangle_esc" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="59" Margin="29,56,0,0" Stroke="Black" VerticalAlignment="Top" Width="59" TouchEnter="esc_TouchDown" TouchLeave="esc_TouchUp" Opacity="0.3"/>
 
     </Grid>
 </Window>

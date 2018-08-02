@@ -225,6 +225,14 @@ namespace osd_buttons
             KeyboardOutput.performKeyRelease(39);
         }
 
+        private void esc_TouchDown(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyDown(27);
+        }
+        private void esc_TouchUp(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyRelease(27);
+        }
         private void F12_TouchDown(object sender, EventArgs e)
         {
             KeyboardOutput.performKeyDown(123);
