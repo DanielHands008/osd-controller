@@ -112,6 +112,62 @@ namespace osd_buttons
             if (place == 8) rectangle_8.Visibility = Visibility.Visible; else rectangle_8.Visibility = Visibility.Hidden;
             if (place == 9) rectangle_9.Visibility = Visibility.Visible; else rectangle_9.Visibility = Visibility.Hidden;
             if (place == 10) rectangle_0.Visibility = Visibility.Visible; else rectangle_0.Visibility = Visibility.Hidden;
+            rectangle_1.Opacity = 1;
+            rectangle_2.Opacity = 1;
+            rectangle_3.Opacity = 1;
+            rectangle_4.Opacity = 1;
+            rectangle_5.Opacity = 1;
+            rectangle_6.Opacity = 1;
+            rectangle_7.Opacity = 1;
+            rectangle_8.Opacity = 1;
+            rectangle_9.Opacity = 1;
+            rectangle_0.Opacity = 1;
+            rectangle_1.Fill = System.Windows.Media.Brushes.Transparent;
+            rectangle_2.Fill = System.Windows.Media.Brushes.Transparent;
+            rectangle_3.Fill = System.Windows.Media.Brushes.Transparent;
+            rectangle_4.Fill = System.Windows.Media.Brushes.Transparent;
+            rectangle_5.Fill = System.Windows.Media.Brushes.Transparent;
+            rectangle_6.Fill = System.Windows.Media.Brushes.Transparent;
+            rectangle_7.Fill = System.Windows.Media.Brushes.Transparent;
+            rectangle_8.Fill = System.Windows.Media.Brushes.Transparent;
+            rectangle_9.Fill = System.Windows.Media.Brushes.Transparent;
+            rectangle_0.Fill = System.Windows.Media.Brushes.Transparent;
+        }
+        void setvis(bool touch)
+        {
+            if (touch)
+            {
+                rectangle_1.Visibility = Visibility.Visible;
+                rectangle_2.Visibility = Visibility.Visible;
+                rectangle_3.Visibility = Visibility.Visible;
+                rectangle_4.Visibility = Visibility.Visible;
+                rectangle_5.Visibility = Visibility.Visible;
+                rectangle_6.Visibility = Visibility.Visible;
+                rectangle_7.Visibility = Visibility.Visible;
+                rectangle_8.Visibility = Visibility.Visible;
+                rectangle_9.Visibility = Visibility.Visible;
+                rectangle_0.Visibility = Visibility.Visible;
+                rectangle_1.Opacity = 0.3;
+                rectangle_2.Opacity = 0.3;
+                rectangle_3.Opacity = 0.3;
+                rectangle_4.Opacity = 0.3;
+                rectangle_5.Opacity = 0.3;
+                rectangle_6.Opacity = 0.3;
+                rectangle_7.Opacity = 0.3;
+                rectangle_8.Opacity = 0.3;
+                rectangle_9.Opacity = 0.3;
+                rectangle_0.Opacity = 0.3;
+                rectangle_1.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
+                rectangle_2.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
+                rectangle_3.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
+                rectangle_4.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
+                rectangle_5.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
+                rectangle_6.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
+                rectangle_7.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
+                rectangle_8.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
+                rectangle_9.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
+                rectangle_0.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
+            }
         }
         /*      
         protected override void OnManipulationStarted(ManipulationStartedEventArgs e)
@@ -199,6 +255,7 @@ namespace osd_buttons
             distance = 0;
             angle = 0;
             stickDown = true;
+            setvis(true);
         }
 
         protected override void OnManipulationDelta(ManipulationDeltaEventArgs e)
@@ -418,6 +475,87 @@ namespace osd_buttons
         private void ctrl_TouchUp(object sender, EventArgs e)
         {
             KeyboardOutput.performKeyRelease(162);
+        }
+
+        private void one_TouchDown(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyDown(49);
+        }
+        private void one_TouchUp(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyRelease(49);
+        }
+        private void two_TouchDown(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyDown(50);
+        }
+        private void two_TouchUp(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyRelease(50);
+        }
+        private void three_TouchDown(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyDown(51);
+        }
+        private void three_TouchUp(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyRelease(51);
+        }
+        private void four_TouchDown(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyDown(52);
+        }
+        private void four_TouchUp(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyRelease(52);
+        }
+        private void five_TouchDown(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyDown(53);
+        }
+        private void five_TouchUp(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyRelease(53);
+        }
+        private void six_TouchDown(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyDown(54);
+        }
+        private void six_TouchUp(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyRelease(54);
+        }
+        private void seven_TouchDown(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyDown(55);
+        }
+        private void seven_TouchUp(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyRelease(55);
+        }
+        private void eight_TouchDown(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyDown(56);
+        }
+        private void eight_TouchUp(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyRelease(56);
+        }
+        private void nine_TouchDown(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyDown(57);
+        }
+        private void nine_TouchUp(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyRelease(57);
+        }
+        private void zero_TouchDown(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyDown(48);
+        }
+        private void zero_TouchUp(object sender, EventArgs e)
+        {
+            KeyboardOutput.performKeyRelease(48);
         }
 
 
