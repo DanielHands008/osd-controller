@@ -284,7 +284,8 @@ namespace osd_buttons
             {
                 quadrant = 5;
             }
-            if (angle >= 202.5 && angle < 247.5) {
+            if (angle >= 202.5 && angle < 247.5)
+            {
                 quadrant = 6;
             }
             if (angle >= 247.5 && angle < 292.5)
@@ -444,11 +445,11 @@ namespace osd_buttons
         {
             KeyboardOutput.performKeyRelease(27);
         }
-        private void F12_TouchDown(object sender, EventArgs e)
+        private void f12_TouchDown(object sender, EventArgs e)
         {
             KeyboardOutput.performKeyDown(123);
         }
-        private void F12_TouchUp(object sender, EventArgs e)
+        private void f12_TouchUp(object sender, EventArgs e)
         {
             KeyboardOutput.performKeyRelease(123);
         }

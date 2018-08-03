@@ -14,7 +14,7 @@
         <UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d">
             <!-- Setting IsManipulationEnabled here tells the UserControl 
          to execute the manipulation methods -->
-            <Ellipse Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="132" Margin="51,0,0,138" Stroke="Black" VerticalAlignment="Bottom" Width="132" IsManipulationEnabled="true" Opacity="0.3"/>
+            <Ellipse Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="132" Margin="52,0,0,128" Stroke="Black" VerticalAlignment="Bottom" Width="132" IsManipulationEnabled="true" Opacity="0.3"/>
         </UserControl>
         <Button x:Name="buttonKeyboard" Content="^" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="28" FontSize="20" Click="buttonKeyboard_Click" Height="26"/>
         <Button x:Name="buttonClose" Content="X" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="28" FontSize="16" Click="buttonClose_Click" Height="26"/>
@@ -29,15 +29,15 @@
         <Rectangle x:Name="rectangle_9" HorizontalAlignment="Left" Height="42" Margin="646,0,0,8" Stroke="Red" VerticalAlignment="Bottom" Width="44" TouchEnter="nine_TouchDown" TouchLeave="nine_TouchUp"/>
         <Rectangle x:Name="rectangle_0" HorizontalAlignment="Left" Height="42" Margin="702,0,0,8" Stroke="Red" VerticalAlignment="Bottom" Width="45" TouchEnter="zero_TouchDown" TouchLeave="zero_TouchUp"/>
 
-        <Rectangle x:Name="rectangle_up" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="73" Margin="0,0,136,223" Stroke="Black" VerticalAlignment="Bottom" Width="44" TouchEnter="up_TouchDown" TouchLeave="up_TouchUp" Opacity="0.3"/>
-        <Rectangle x:Name="rectangle_down" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="73" Margin="0,0,136,106" Stroke="Black" VerticalAlignment="Bottom" Width="44" TouchEnter="down_TouchDown" TouchLeave="down_TouchUp" Opacity="0.3"/>
-        <Rectangle x:Name="rectangle_left" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="44" Margin="0,0,180,179" Stroke="Black" VerticalAlignment="Bottom" Width="73" TouchEnter="left_TouchDown" TouchLeave="left_TouchUp" Opacity="0.3"/>
-        <Rectangle x:Name="rectangle_right" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="44" Margin="0,0,63,179" Stroke="Black" VerticalAlignment="Bottom" Width="73" TouchEnter="right_TouchDown" TouchLeave="right_TouchUp" Opacity="0.3"/>
-        <Rectangle x:Name="rectangle_F12" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="59" Margin="0,56,51,0" Stroke="Black" VerticalAlignment="Top" Width="59" TouchEnter="F12_TouchDown" TouchLeave="F12_TouchUp" Opacity="0.3"/>
-        <Ellipse x:Name="circle_Enter" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="68" Margin="0,0,31,269" Stroke="Black" VerticalAlignment="Bottom" Width="68" TouchEnter="enter_TouchDown" TouchLeave="enter_TouchUp" Opacity="0.3"/>
-        <Ellipse x:Name="circle_up" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="68" Margin="0,0,219,269" Stroke="Black" VerticalAlignment="Bottom" Width="68" TouchEnter="end_TouchDown" TouchLeave="end_TouchUp" Opacity="0.3"/>
-        <Ellipse x:Name="circle_ctrl" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="68" Margin="29,0,0,349" Stroke="Black" VerticalAlignment="Bottom" Width="68" TouchEnter="ctrl_TouchDown" TouchLeave="ctrl_TouchUp" Opacity="0.3"/>
-        <Rectangle x:Name="rectangle_esc" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="59" Margin="29,56,0,0" Stroke="Black" VerticalAlignment="Top" Width="59" TouchEnter="esc_TouchDown" TouchLeave="esc_TouchUp" Opacity="0.3"/>
+        <Image x:Name="image_enter" HorizontalAlignment="Right" Height="64" Margin="0,0,32,273" VerticalAlignment="Bottom" Width="64" Source="images/enter.png" TouchEnter="enter_TouchDown" TouchLeave="enter_TouchUp" Opacity="0.3"/>
+        <Image x:Name="image_end" HorizontalAlignment="Right" Height="64" Margin="0,0,222,273" VerticalAlignment="Bottom" Width="64" Source="images/end.png" TouchEnter="end_TouchDown" TouchLeave="end_TouchUp" Opacity="0.3"/>
+        <Image x:Name="image_ctrl" HorizontalAlignment="Left" Height="64" Margin="32,0,0,273" VerticalAlignment="Bottom" Width="64" Source="images/ctrl.png" TouchEnter="ctrl_TouchDown" TouchLeave="ctrl_TouchUp" Opacity="0.3"/>
+        <Image x:Name="image_esc" HorizontalAlignment="Left" Height="64" Margin="32,52,0,0" VerticalAlignment="Top" Width="64" Source="images/esc.png" TouchEnter="esc_TouchDown" TouchLeave="esc_TouchUp" Opacity="0.3"/>
+        <Image x:Name="image_f12" HorizontalAlignment="Right" Height="64" Margin="0,52,51,0" VerticalAlignment="Top" Width="64" Source="images/f12.png" TouchEnter="f12_TouchDown" TouchLeave="f12_TouchUp" Opacity="0.3"/>
+        <Image x:Name="image_up" HorizontalAlignment="Right" Height="94" Margin="0,0,136,203" VerticalAlignment="Bottom" Width="44" Source="images/up.png" TouchEnter="up_TouchDown" TouchLeave="up_TouchUp" Opacity="0.3"/>
+        <Image x:Name="image_down" HorizontalAlignment="Right" Height="94" Margin="0,0,136,105" VerticalAlignment="Bottom" Width="44" Source="images/down.png" TouchEnter="down_TouchDown" TouchLeave="down_TouchUp" Opacity="0.3"/>
+        <Image x:Name="image_left" HorizontalAlignment="Right" Height="44" Margin="0,0,160,179" VerticalAlignment="Bottom" Width="94" Source="images/left.png" TouchEnter="left_TouchDown" TouchLeave="left_TouchUp" Opacity="0.3"/>
+        <Image x:Name="image_right" HorizontalAlignment="Right" Height="44" Margin="0,0,62,179" VerticalAlignment="Bottom" Width="94" Source="images/right.png" TouchEnter="right_TouchDown" TouchLeave="right_TouchUp" Opacity="0.3"/>
 
     </Grid>
 </Window>
