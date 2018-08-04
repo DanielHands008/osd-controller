@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
@@ -24,8 +25,15 @@ namespace osd_buttons
     /// </summary>
     public partial class MainWindow : Window
     {
+        Mutex m;
         public MainWindow()
         {
+            bool isnew;
+            m = new Mutex(true, "awijwwsnswh", out isnew);
+            if (!isnew)
+            {
+                Environment.Exit(0);
+            }
             InitializeComponent();
         }
 
