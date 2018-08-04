@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -13,6 +14,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -36,151 +38,18 @@ namespace osd_buttons
             }
             InitializeComponent();
         }
-
-        private KeyboardHook _hook;
         
         int place = 1;
 
         Point StickStartPoint = new Point(0, 0);
         Point StickCurrentPoint = new Point(0, 0);
         Point StickDeltaPoint = new Point(0, 0);
-        bool left = false, right = false, up = false, down = false, isNumBarTouch = false;
+        bool left = false, right = false, up = false, down = false;
         double distance = 0, angle = 0;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // install system-wide keyboard hook
-            _hook = new KeyboardHook();
-            _hook.KeyDown += new KeyboardHook.HookEventHandler(OnHookKeyDown);
-            setvis(true);
-
-        }
-
-        void OnHookKeyDown(object sender, HookEventArgs e)
-        {
-            
-            if(e.Key == Key.F18 && place < 10)
-            {
-                place++;
-                setvis();
-            }
-            if (e.Key == Key.F20 && place > 1)
-            {
-                place--;
-                setvis();
-            }
-            if (e.Key == Key.F17)
-            {
-                switch(place)
-                {
-                    case 1:
-                        KeyboardOutput.performKeyPress(49);
-                        break;
-                    case 2:
-                        KeyboardOutput.performKeyPress(50);
-                        break;
-                    case 3:
-                        KeyboardOutput.performKeyPress(51);
-                        break;
-                    case 4:
-                        KeyboardOutput.performKeyPress(52);
-                        break;
-                    case 5:
-                        KeyboardOutput.performKeyPress(53);
-                        break;
-                    case 6:
-                        KeyboardOutput.performKeyPress(54);
-                        break;
-                    case 7:
-                        KeyboardOutput.performKeyPress(55);
-                        break;
-                    case 8:
-                        KeyboardOutput.performKeyPress(56);
-                        break;
-                    case 9:
-                        KeyboardOutput.performKeyPress(57);
-                        break;
-                    case 10:
-                        KeyboardOutput.performKeyPress(48);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-        void setvis()
-        {
-            if (place == 1) rectangle_1.Visibility = Visibility.Visible; else rectangle_1.Visibility = Visibility.Hidden;
-            if (place == 2) rectangle_2.Visibility = Visibility.Visible; else rectangle_2.Visibility = Visibility.Hidden;
-            if (place == 3) rectangle_3.Visibility = Visibility.Visible; else rectangle_3.Visibility = Visibility.Hidden;
-            if (place == 4) rectangle_4.Visibility = Visibility.Visible; else rectangle_4.Visibility = Visibility.Hidden;
-            if (place == 5) rectangle_5.Visibility = Visibility.Visible; else rectangle_5.Visibility = Visibility.Hidden;
-            if (place == 6) rectangle_6.Visibility = Visibility.Visible; else rectangle_6.Visibility = Visibility.Hidden;
-            if (place == 7) rectangle_7.Visibility = Visibility.Visible; else rectangle_7.Visibility = Visibility.Hidden;
-            if (place == 8) rectangle_8.Visibility = Visibility.Visible; else rectangle_8.Visibility = Visibility.Hidden;
-            if (place == 9) rectangle_9.Visibility = Visibility.Visible; else rectangle_9.Visibility = Visibility.Hidden;
-            if (place == 10) rectangle_0.Visibility = Visibility.Visible; else rectangle_0.Visibility = Visibility.Hidden;
-            if (isNumBarTouch)
-            {
-                rectangle_1.Opacity = 1;
-                rectangle_2.Opacity = 1;
-                rectangle_3.Opacity = 1;
-                rectangle_4.Opacity = 1;
-                rectangle_5.Opacity = 1;
-                rectangle_6.Opacity = 1;
-                rectangle_7.Opacity = 1;
-                rectangle_8.Opacity = 1;
-                rectangle_9.Opacity = 1;
-                rectangle_0.Opacity = 1;
-                rectangle_1.Fill = System.Windows.Media.Brushes.Transparent;
-                rectangle_2.Fill = System.Windows.Media.Brushes.Transparent;
-                rectangle_3.Fill = System.Windows.Media.Brushes.Transparent;
-                rectangle_4.Fill = System.Windows.Media.Brushes.Transparent;
-                rectangle_5.Fill = System.Windows.Media.Brushes.Transparent;
-                rectangle_6.Fill = System.Windows.Media.Brushes.Transparent;
-                rectangle_7.Fill = System.Windows.Media.Brushes.Transparent;
-                rectangle_8.Fill = System.Windows.Media.Brushes.Transparent;
-                rectangle_9.Fill = System.Windows.Media.Brushes.Transparent;
-                rectangle_0.Fill = System.Windows.Media.Brushes.Transparent;
-                isNumBarTouch = false;
-            }
-        }
-        void setvis(bool touch)
-        {
-            if (touch && !isNumBarTouch)
-            {
-                rectangle_1.Visibility = Visibility.Visible;
-                rectangle_2.Visibility = Visibility.Visible;
-                rectangle_3.Visibility = Visibility.Visible;
-                rectangle_4.Visibility = Visibility.Visible;
-                rectangle_5.Visibility = Visibility.Visible;
-                rectangle_6.Visibility = Visibility.Visible;
-                rectangle_7.Visibility = Visibility.Visible;
-                rectangle_8.Visibility = Visibility.Visible;
-                rectangle_9.Visibility = Visibility.Visible;
-                rectangle_0.Visibility = Visibility.Visible;
-                rectangle_1.Opacity = 0.3;
-                rectangle_2.Opacity = 0.3;
-                rectangle_3.Opacity = 0.3;
-                rectangle_4.Opacity = 0.3;
-                rectangle_5.Opacity = 0.3;
-                rectangle_6.Opacity = 0.3;
-                rectangle_7.Opacity = 0.3;
-                rectangle_8.Opacity = 0.3;
-                rectangle_9.Opacity = 0.3;
-                rectangle_0.Opacity = 0.3;
-                rectangle_1.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
-                rectangle_2.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
-                rectangle_3.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
-                rectangle_4.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
-                rectangle_5.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
-                rectangle_6.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
-                rectangle_7.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
-                rectangle_8.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
-                rectangle_9.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
-                rectangle_0.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
-                isNumBarTouch = true;
-            }
+            loadCustomUi();
         }
 
         protected override void OnManipulationStarted(ManipulationStartedEventArgs e)
@@ -189,7 +58,6 @@ namespace osd_buttons
             StickCurrentPoint = e.ManipulationOrigin;
             distance = 0;
             angle = 0;
-            setvis(true);
         }
 
         protected override void OnManipulationDelta(ManipulationDeltaEventArgs e)
@@ -374,6 +242,45 @@ namespace osd_buttons
         private void close_App(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void loadCustomUi()
+        {
+            try
+            {
+                string content = File.ReadAllText("layout.xaml");
+                Grid grd = new Grid();
+                var grdEncoding = new ASCIIEncoding();
+                var grdBytes = grdEncoding.GetBytes(content);
+                grd = (Grid)XamlReader.Load(new MemoryStream(grdBytes));
+                Grid.SetColumn(grd, 0);
+                Grid.SetRow(grd, 0);
+
+                custom_ui.Children.Add(grd);
+                Grid grid = (Grid)custom_ui.Children[0];
+                for(int i = 0; i < grid.Children.Count; i++)
+                {
+                    if (grid.Children[i].GetType().ToString() == "System.Windows.Shapes.Rectangle")
+                    {
+                        grid.Children[i].AddHandler(Rectangle.TouchEnterEvent, new RoutedEventHandler(button_TouchDown));
+                        grid.Children[i].AddHandler(Rectangle.TouchLeaveEvent, new RoutedEventHandler(button_TouchUp));
+                    }
+                    if (grid.Children[i].GetType().ToString() == "System.Windows.Shapes.Ellipse")
+                    {
+                        grid.Children[i].AddHandler(Ellipse.TouchEnterEvent, new RoutedEventHandler(button_TouchDown));
+                        grid.Children[i].AddHandler(Ellipse.TouchLeaveEvent, new RoutedEventHandler(button_TouchUp));
+                    }
+                    if (grid.Children[i].GetType().ToString() == "System.Windows.Controls.Image")
+                    {
+                        grid.Children[i].AddHandler(Image.TouchEnterEvent, new RoutedEventHandler(button_TouchDown));
+                        grid.Children[i].AddHandler(Image.TouchLeaveEvent, new RoutedEventHandler(button_TouchUp));
+                    }
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
         #region Prevent Focus

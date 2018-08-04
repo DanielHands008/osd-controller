@@ -107,7 +107,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GlobalKeyBoardHook.cs" />
     <Compile Include="KeyboardOutput.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -160,4 +159,7 @@
     <Resource Include="images\yes.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(ProjectDir)layout.xaml" "$(TargetDir)layout.xaml"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
