@@ -29,7 +29,7 @@ namespace osd_buttons
         public MainWindow()
         {
             bool isnew;
-            m = new Mutex(true, "awijwwsnswh", out isnew);
+            m = new Mutex(true, "HXG6qA7Tx#e2@IBSvpa4AySyD7KZj1D4", out isnew);
             if (!isnew)
             {
                 Environment.Exit(0);
@@ -44,7 +44,7 @@ namespace osd_buttons
         Point StickStartPoint = new Point(0, 0);
         Point StickCurrentPoint = new Point(0, 0);
         Point StickDeltaPoint = new Point(0, 0);
-        bool stickDown = false, left = false, right = false, up = false, down = false, isNumBarTouch = false;
+        bool left = false, right = false, up = false, down = false, isNumBarTouch = false;
         double distance = 0, angle = 0;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -52,7 +52,7 @@ namespace osd_buttons
             // install system-wide keyboard hook
             _hook = new KeyboardHook();
             _hook.KeyDown += new KeyboardHook.HookEventHandler(OnHookKeyDown);
-            setvis();
+            setvis(true);
 
         }
 
@@ -189,7 +189,6 @@ namespace osd_buttons
             StickCurrentPoint = e.ManipulationOrigin;
             distance = 0;
             angle = 0;
-            stickDown = true;
             setvis(true);
         }
 
@@ -202,37 +201,21 @@ namespace osd_buttons
             if (distance > 30)
             {
                 if (angle < 22.5 || angle >= 337.5)
-                {
                     quadrant = 1;
-                }
                 if (angle >= 22.5 && angle < 67.5)
-                {
                     quadrant = 2;
-                }
                 if (angle >= 67.5 && angle < 112.5)
-                {
                     quadrant = 3;
-                }
                 if (angle >= 112.5 && angle < 157.5)
-                {
                     quadrant = 4;
-                }
                 if (angle >= 157.5 && angle < 202.5)
-                {
                     quadrant = 5;
-                }
                 if (angle >= 202.5 && angle < 247.5)
-                {
                     quadrant = 6;
-                }
                 if (angle >= 247.5 && angle < 292.5)
-                {
                     quadrant = 7;
-                }
                 if (angle >= 292.5 && angle < 337.5)
-                {
                     quadrant = 8;
-                }
             }
             switch (quadrant)
             {
@@ -269,7 +252,6 @@ namespace osd_buttons
 
         protected override void OnManipulationCompleted(ManipulationCompletedEventArgs e)
         {
-            stickDown = false;
             wasdKeys(false, false, false, false);
         }
 
@@ -306,7 +288,6 @@ namespace osd_buttons
                     left = false;
                     KeyboardOutput.performKeyRelease(65);
                 }
-                
             }
             if (idown)
             {
@@ -342,159 +323,37 @@ namespace osd_buttons
             }
         }
 
-        private void up_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(38);
-        }
-        private void up_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(38);
-        }
-        private void down_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(40);
-        }
-        private void down_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(40);
-        }
-        private void left_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(37);
-        }
-        private void left_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(37);
-        }
-        private void right_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(39);
-        }
-        private void right_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(39);
-        }
 
-        private void esc_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(27);
-        }
-        private void esc_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(27);
-        }
-        private void f12_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(123);
-        }
-        private void f12_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(123);
-        }
-        private void enter_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(13);
-        }
-        private void enter_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(13);
-        }
-        private void end_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(35);
-        }
-        private void end_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(35);
-        }
-        private void ctrl_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(162);
-        }
-        private void ctrl_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(162);
-        }
 
-        private void one_TouchDown(object sender, EventArgs e)
+        private void button_TouchDown(object sender, EventArgs e)
         {
-            KeyboardOutput.performKeyDown(49);
+            string tag = "";
+            if (sender.GetType().ToString() == "System.Windows.Shapes.Rectangle")
+                tag = ((Rectangle)sender).Tag.ToString();
+            if (sender.GetType().ToString() == "System.Windows.Shapes.Ellipse")
+                tag = ((Ellipse)sender).Tag.ToString();
+            if (sender.GetType().ToString() == "System.Windows.Controls.Image")
+                tag = ((Image)sender).Tag.ToString();
+            if (tag.StartsWith("keycode:"))
+            {
+                UInt16 keyCode = UInt16.Parse(tag.Substring(8));
+                KeyboardOutput.performKeyDown(keyCode);
+            }
         }
-        private void one_TouchUp(object sender, EventArgs e)
+        private void button_TouchUp(object sender, EventArgs e)
         {
-            KeyboardOutput.performKeyRelease(49);
-        }
-        private void two_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(50);
-        }
-        private void two_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(50);
-        }
-        private void three_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(51);
-        }
-        private void three_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(51);
-        }
-        private void four_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(52);
-        }
-        private void four_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(52);
-        }
-        private void five_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(53);
-        }
-        private void five_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(53);
-        }
-        private void six_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(54);
-        }
-        private void six_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(54);
-        }
-        private void seven_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(55);
-        }
-        private void seven_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(55);
-        }
-        private void eight_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(56);
-        }
-        private void eight_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(56);
-        }
-        private void nine_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(57);
-        }
-        private void nine_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(57);
-        }
-        private void zero_TouchDown(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyDown(48);
-        }
-        private void zero_TouchUp(object sender, EventArgs e)
-        {
-            KeyboardOutput.performKeyRelease(48);
+            string tag = "";
+            if (sender.GetType().ToString() == "System.Windows.Shapes.Rectangle")
+                tag = ((Rectangle)sender).Tag.ToString();
+            if (sender.GetType().ToString() == "System.Windows.Shapes.Ellipse")
+                tag = ((Ellipse)sender).Tag.ToString();
+            if (sender.GetType().ToString() == "System.Windows.Controls.Image")
+                tag = ((Image)sender).Tag.ToString();
+            if (tag.StartsWith("keycode:"))
+            {
+                UInt16 keyCode = UInt16.Parse(tag.Substring(8));
+                KeyboardOutput.performKeyRelease(keyCode);
+            }
         }
 
 
