@@ -36,7 +36,7 @@ namespace osd_buttons
         Point StickStartPoint = new Point(0, 0);
         Point StickCurrentPoint = new Point(0, 0);
         Point StickDeltaPoint = new Point(0, 0);
-        bool stickDown = false, left = false, right = false, up = false, down = false;
+        bool stickDown = false, left = false, right = false, up = false, down = false, isNumBarTouch = false;
         double distance = 0, angle = 0;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -112,30 +112,34 @@ namespace osd_buttons
             if (place == 8) rectangle_8.Visibility = Visibility.Visible; else rectangle_8.Visibility = Visibility.Hidden;
             if (place == 9) rectangle_9.Visibility = Visibility.Visible; else rectangle_9.Visibility = Visibility.Hidden;
             if (place == 10) rectangle_0.Visibility = Visibility.Visible; else rectangle_0.Visibility = Visibility.Hidden;
-            rectangle_1.Opacity = 1;
-            rectangle_2.Opacity = 1;
-            rectangle_3.Opacity = 1;
-            rectangle_4.Opacity = 1;
-            rectangle_5.Opacity = 1;
-            rectangle_6.Opacity = 1;
-            rectangle_7.Opacity = 1;
-            rectangle_8.Opacity = 1;
-            rectangle_9.Opacity = 1;
-            rectangle_0.Opacity = 1;
-            rectangle_1.Fill = System.Windows.Media.Brushes.Transparent;
-            rectangle_2.Fill = System.Windows.Media.Brushes.Transparent;
-            rectangle_3.Fill = System.Windows.Media.Brushes.Transparent;
-            rectangle_4.Fill = System.Windows.Media.Brushes.Transparent;
-            rectangle_5.Fill = System.Windows.Media.Brushes.Transparent;
-            rectangle_6.Fill = System.Windows.Media.Brushes.Transparent;
-            rectangle_7.Fill = System.Windows.Media.Brushes.Transparent;
-            rectangle_8.Fill = System.Windows.Media.Brushes.Transparent;
-            rectangle_9.Fill = System.Windows.Media.Brushes.Transparent;
-            rectangle_0.Fill = System.Windows.Media.Brushes.Transparent;
+            if (isNumBarTouch)
+            {
+                rectangle_1.Opacity = 1;
+                rectangle_2.Opacity = 1;
+                rectangle_3.Opacity = 1;
+                rectangle_4.Opacity = 1;
+                rectangle_5.Opacity = 1;
+                rectangle_6.Opacity = 1;
+                rectangle_7.Opacity = 1;
+                rectangle_8.Opacity = 1;
+                rectangle_9.Opacity = 1;
+                rectangle_0.Opacity = 1;
+                rectangle_1.Fill = System.Windows.Media.Brushes.Transparent;
+                rectangle_2.Fill = System.Windows.Media.Brushes.Transparent;
+                rectangle_3.Fill = System.Windows.Media.Brushes.Transparent;
+                rectangle_4.Fill = System.Windows.Media.Brushes.Transparent;
+                rectangle_5.Fill = System.Windows.Media.Brushes.Transparent;
+                rectangle_6.Fill = System.Windows.Media.Brushes.Transparent;
+                rectangle_7.Fill = System.Windows.Media.Brushes.Transparent;
+                rectangle_8.Fill = System.Windows.Media.Brushes.Transparent;
+                rectangle_9.Fill = System.Windows.Media.Brushes.Transparent;
+                rectangle_0.Fill = System.Windows.Media.Brushes.Transparent;
+                isNumBarTouch = false;
+            }
         }
         void setvis(bool touch)
         {
-            if (touch)
+            if (touch && !isNumBarTouch)
             {
                 rectangle_1.Visibility = Visibility.Visible;
                 rectangle_2.Visibility = Visibility.Visible;
@@ -167,86 +171,9 @@ namespace osd_buttons
                 rectangle_8.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
                 rectangle_9.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
                 rectangle_0.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF4F4F5");
+                isNumBarTouch = true;
             }
         }
-        /*      
-        protected override void OnManipulationStarted(ManipulationStartedEventArgs e)
-        { 
-            StickStartPoint = e.ManipulationOrigin;
-            StickCurrentPoint = e.ManipulationOrigin;
-            stickDown = true;
-
-        }
-
-        protected override void OnManipulationDelta(ManipulationDeltaEventArgs e)
-        {
-            StickCurrentPoint = e.ManipulationOrigin;
-            StickDeltaPoint.X = StickCurrentPoint.X - StickStartPoint.X;
-            StickDeltaPoint.Y = StickCurrentPoint.Y - StickStartPoint.Y;
-            if (StickDeltaPoint.X > 50)
-            {
-                right = true;
-                KeyboardOutput.performKeyDown(68);
-            }
-            else
-            {
-                right = false;
-                KeyboardOutput.performKeyRelease(68);
-            }
-            if (StickDeltaPoint.X < -50)
-            {
-                left = true;
-                KeyboardOutput.performKeyDown(65);
-            }
-            else
-            {
-                left = false;
-                KeyboardOutput.performKeyRelease(65);
-            }
-            if (StickDeltaPoint.Y > 50)
-            {
-                down = true;
-                KeyboardOutput.performKeyDown(83);
-            }
-            else
-            {
-                down = false;
-                KeyboardOutput.performKeyRelease(83);
-            }
-            if (StickDeltaPoint.Y < -50)
-            {
-                up = true;
-                KeyboardOutput.performKeyDown(87);
-            }
-            else
-            {
-                up = false;
-                KeyboardOutput.performKeyRelease(87);
-            }
-        }
-
-        protected override void OnManipulationCompleted(ManipulationCompletedEventArgs e)
-        {
-            if (right)
-            {
-                KeyboardOutput.performKeyRelease(68);
-            }
-            if (left)
-            {
-                KeyboardOutput.performKeyRelease(65);
-            }
-            if (up)
-            {
-                KeyboardOutput.performKeyRelease(87);
-            }
-            if (down) {
-                KeyboardOutput.performKeyRelease(83);
-            }
-            stickDown = up = down = left = right = false;
-            StickDeltaPoint.X = 0;
-            StickDeltaPoint.Y = 0;
-        }
-        */
 
         protected override void OnManipulationStarted(ManipulationStartedEventArgs e)
         {
@@ -264,37 +191,40 @@ namespace osd_buttons
             distance = Point.Subtract(StickStartPoint, StickCurrentPoint).Length;
             angle = (Math.Atan2(StickCurrentPoint.Y - StickStartPoint.Y, StickCurrentPoint.X - StickStartPoint.X) * 180.0 / Math.PI) + 180;
             int quadrant = 0;
-            if (angle < 22.5 || angle >= 337.5)
+            if (distance > 30)
             {
-                quadrant = 1;
-            }
-            if (angle >= 22.5 && angle < 67.5)
-            {
-                quadrant = 2;
-            }
-            if (angle >= 67.5 && angle < 112.5)
-            {
-                quadrant = 3;
-            }
-            if (angle >= 112.5 && angle < 157.5)
-            {
-                quadrant = 4;
-            }
-            if (angle >= 157.5 && angle < 202.5)
-            {
-                quadrant = 5;
-            }
-            if (angle >= 202.5 && angle < 247.5)
-            {
-                quadrant = 6;
-            }
-            if (angle >= 247.5 && angle < 292.5)
-            {
-                quadrant = 7;
-            }
-            if (angle >= 292.5 && angle < 337.5)
-            {
-                quadrant = 8;
+                if (angle < 22.5 || angle >= 337.5)
+                {
+                    quadrant = 1;
+                }
+                if (angle >= 22.5 && angle < 67.5)
+                {
+                    quadrant = 2;
+                }
+                if (angle >= 67.5 && angle < 112.5)
+                {
+                    quadrant = 3;
+                }
+                if (angle >= 112.5 && angle < 157.5)
+                {
+                    quadrant = 4;
+                }
+                if (angle >= 157.5 && angle < 202.5)
+                {
+                    quadrant = 5;
+                }
+                if (angle >= 202.5 && angle < 247.5)
+                {
+                    quadrant = 6;
+                }
+                if (angle >= 247.5 && angle < 292.5)
+                {
+                    quadrant = 7;
+                }
+                if (angle >= 292.5 && angle < 337.5)
+                {
+                    quadrant = 8;
+                }
             }
             switch (quadrant)
             {
