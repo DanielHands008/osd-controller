@@ -490,12 +490,21 @@ namespace osd_buttons
         }
 
 
-        private void buttonKeyboard_Click(object sender, RoutedEventArgs e)
+        private void keyboard_Open(object sender, RoutedEventArgs e)
         {
             Process.Start(@"C:\Program Files\Common Files\microsoft shared\ink\TabTip.exe");
         }
 
-        private void buttonClose_Click(object sender, RoutedEventArgs e)
+        private void show_close_dialog(object sender, RoutedEventArgs e)
+        {
+            close_dialog.Visibility = Visibility.Visible;
+        }
+        private void hide_close_dialog(object sender, RoutedEventArgs e)
+        {
+            close_dialog.Visibility = Visibility.Hidden;
+        }
+
+        private void close_App(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
