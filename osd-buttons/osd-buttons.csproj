@@ -174,6 +174,10 @@
     <Resource Include="images\x.png" />
     <Resource Include="images\y.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ls.png" />
+    <Resource Include="images\rs.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)layout.xaml" "$(TargetDir)layout.xaml"</PostBuildEvent>
