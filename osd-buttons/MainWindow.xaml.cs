@@ -65,65 +65,116 @@ namespace osd_buttons
 
         protected override void OnManipulationDelta(ManipulationDeltaEventArgs e)
         {
+            string tag = ((Ellipse)e.ManipulationContainer).Tag.ToString().ToUpper();
             StickCurrentPoint = e.ManipulationOrigin;
-            distance = Point.Subtract(StickStartPoint, StickCurrentPoint).Length;
-            angle = (Math.Atan2(StickCurrentPoint.Y - StickStartPoint.Y, StickCurrentPoint.X - StickStartPoint.X) * 180.0 / Math.PI) + 180;
-            int quadrant = 0;
-            if (distance > 30)
+            if (tag == "STICK:WASD")
             {
-                if (angle < 22.5 || angle >= 337.5)
-                    quadrant = 1;
-                if (angle >= 22.5 && angle < 67.5)
-                    quadrant = 2;
-                if (angle >= 67.5 && angle < 112.5)
-                    quadrant = 3;
-                if (angle >= 112.5 && angle < 157.5)
-                    quadrant = 4;
-                if (angle >= 157.5 && angle < 202.5)
-                    quadrant = 5;
-                if (angle >= 202.5 && angle < 247.5)
-                    quadrant = 6;
-                if (angle >= 247.5 && angle < 292.5)
-                    quadrant = 7;
-                if (angle >= 292.5 && angle < 337.5)
-                    quadrant = 8;
+                distance = Point.Subtract(StickStartPoint, StickCurrentPoint).Length;
+                angle = (Math.Atan2(StickCurrentPoint.Y - StickStartPoint.Y, StickCurrentPoint.X - StickStartPoint.X) * 180.0 / Math.PI) + 180;
+                int quadrant = 0;
+                if (distance > 30)
+                {
+                    if (angle < 22.5 || angle >= 337.5)
+                        quadrant = 1;
+                    if (angle >= 22.5 && angle < 67.5)
+                        quadrant = 2;
+                    if (angle >= 67.5 && angle < 112.5)
+                        quadrant = 3;
+                    if (angle >= 112.5 && angle < 157.5)
+                        quadrant = 4;
+                    if (angle >= 157.5 && angle < 202.5)
+                        quadrant = 5;
+                    if (angle >= 202.5 && angle < 247.5)
+                        quadrant = 6;
+                    if (angle >= 247.5 && angle < 292.5)
+                        quadrant = 7;
+                    if (angle >= 292.5 && angle < 337.5)
+                        quadrant = 8;
+                }
+                switch (quadrant)
+                {
+                    case 1:
+                        wasdKeys(false, true, false, false);
+                        break;
+                    case 2:
+                        wasdKeys(true, true, false, false);
+                        break;
+                    case 3:
+                        wasdKeys(true, false, false, false);
+                        break;
+                    case 4:
+                        wasdKeys(true, false, false, true);
+                        break;
+                    case 5:
+                        wasdKeys(false, false, false, true);
+                        break;
+                    case 6:
+                        wasdKeys(false, false, true, true);
+                        break;
+                    case 7:
+                        wasdKeys(false, false, true, false);
+                        break;
+                    case 8:
+                        wasdKeys(false, true, true, false);
+                        break;
+                    default:
+                        wasdKeys(false, false, false, false);
+                        break;
+                }
             }
-            switch (quadrant)
-            {
-                case 1:
-                    wasdKeys(false, true, false, false);
-                    break;
-                case 2:
-                    wasdKeys(true, true, false, false);
-                    break;
-                case 3:
-                    wasdKeys(true, false, false, false);
-                    break;
-                case 4:
-                    wasdKeys(true, false, false, true);
-                    break;
-                case 5:
-                    wasdKeys(false, false, false, true);
-                    break;
-                case 6:
-                    wasdKeys(false, false, true, true);
-                    break;
-                case 7:
-                    wasdKeys(false, false, true, false);
-                    break;
-                case 8:
-                    wasdKeys(false, true, true, false);
-                    break;
-                default:
-                    wasdKeys(false, false, false, false);
-                    break;
+            if (tag.StartsWith("STICK:X360")) {
+                string side = "";
+                if (tag.Substring(10) == ".RIGHT")
+                    side = "RIGHT";
+                if (tag.Substring(10) == ".LEFT")
+                    side = "LEFT";
+                double xDelta = StickCurrentPoint.X - StickStartPoint.X;
+                if (xDelta > 50)
+                    xDelta = 50;
+                if (xDelta < -50)
+                    xDelta = -50;
+                double yDelta = StickCurrentPoint.Y - StickStartPoint.Y;
+                if (yDelta > 50)
+                    yDelta = 50;
+                if (yDelta < -50)
+                    yDelta = -50;
+                if (xDelta != 0)
+                    xDelta = xDelta / 50;
+                if (yDelta != 0)
+                    yDelta = yDelta / 50;
+                if (side == "LEFT")
+                {
+                    controller.LeftStickX = Convert.ToInt16(xDelta * 32767);
+                    controller.LeftStickY = Convert.ToInt16(-(yDelta * 32767));
+                    scpBus.Report(1, controller.GetReport());
+                }
+                if (side == "RIGHT")
+                {
+                    controller.RightStickX = Convert.ToInt16(xDelta * 32767);
+                    controller.RightStickY = Convert.ToInt16(-(yDelta * 32767));
+                    scpBus.Report(1, controller.GetReport());
+                }
             }
 
         }
 
         protected override void OnManipulationCompleted(ManipulationCompletedEventArgs e)
         {
-            wasdKeys(false, false, false, false);
+            string tag = ((Ellipse)e.ManipulationContainer).Tag.ToString().ToUpper();
+            if (tag == "STICK:WASD")
+                wasdKeys(false, false, false, false);
+            if (tag == "STICK:X360.LEFT")
+            {
+                controller.LeftStickX = 0;
+                controller.LeftStickY = 0;
+                scpBus.Report(1, controller.GetReport());
+            }
+            if (tag == "STICK:X360.RIGHT")
+            {
+                controller.RightStickX = 0;
+                controller.RightStickY = 0;
+                scpBus.Report(1, controller.GetReport());
+            }
         }
 
         void wasdKeys(bool iup, bool ileft, bool idown, bool iright)
@@ -200,17 +251,17 @@ namespace osd_buttons
         {
             string tag = "";
             if (sender.GetType().ToString() == "System.Windows.Shapes.Rectangle")
-                tag = ((Rectangle)sender).Tag.ToString();
+                tag = ((Rectangle)sender).Tag.ToString().ToUpper();
             if (sender.GetType().ToString() == "System.Windows.Shapes.Ellipse")
-                tag = ((Ellipse)sender).Tag.ToString();
+                tag = ((Ellipse)sender).Tag.ToString().ToUpper();
             if (sender.GetType().ToString() == "System.Windows.Controls.Image")
-                tag = ((Image)sender).Tag.ToString();
-            if (tag.StartsWith("keycode:"))
+                tag = ((Image)sender).Tag.ToString().ToUpper();
+            if (tag.StartsWith("KECODE:"))
             {
                 UInt16 keyCode = UInt16.Parse(tag.Substring(8));
                 KeyboardOutput.performKeyDown(keyCode);
             }
-            if (tag.StartsWith("xinput:"))
+            if (tag.StartsWith("XINPUT:"))
             {
                 string button = tag.Substring(7);
                 if (button.ToUpper() == "RT")
@@ -233,17 +284,17 @@ namespace osd_buttons
         {
             string tag = "";
             if (sender.GetType().ToString() == "System.Windows.Shapes.Rectangle")
-                tag = ((Rectangle)sender).Tag.ToString();
+                tag = ((Rectangle)sender).Tag.ToString().ToUpper();
             if (sender.GetType().ToString() == "System.Windows.Shapes.Ellipse")
-                tag = ((Ellipse)sender).Tag.ToString();
+                tag = ((Ellipse)sender).Tag.ToString().ToUpper();
             if (sender.GetType().ToString() == "System.Windows.Controls.Image")
-                tag = ((Image)sender).Tag.ToString();
-            if (tag.StartsWith("keycode:"))
+                tag = ((Image)sender).Tag.ToString().ToUpper();
+            if (tag.StartsWith("KEYCODE:"))
             {
                 UInt16 keyCode = UInt16.Parse(tag.Substring(8));
                 KeyboardOutput.performKeyRelease(keyCode);
             }
-            if (tag.StartsWith("xinput:"))
+            if (tag.StartsWith("XINPUT:"))
             {
                 string button = tag.Substring(7);
                 if (button.ToUpper() == "RT")
@@ -258,7 +309,7 @@ namespace osd_buttons
                 {
                     controller.Buttons &= ~StringToX360(button);
                 }
-
+                
                 scpBus.Report(1, controller.GetReport());
             }
         }
@@ -321,6 +372,13 @@ namespace osd_buttons
                         if (((Image)grid.Children[i]).Tag.ToString().StartsWith("xinput:"))
                             xinputControls = true;
                     }
+                    if (grid.Children[i].GetType().ToString() == "System.Windows.Controls.UserControl")
+                    {
+                        UserControl controlField = (UserControl)grid.Children[i];
+                        Ellipse controlContent = (Ellipse)controlField.Content;
+                        if (controlContent.Tag.ToString().ToUpper().StartsWith("STICK:X360"))
+                            xinputControls = true;
+                    }
                 }
                 if (xinputControls)
                     scpBus.PlugIn(1);
@@ -333,7 +391,7 @@ namespace osd_buttons
 
         static X360Buttons StringToX360(string button)
         {
-            switch(button.ToUpper())
+            switch(button)
             {
                 case "A":
                     return X360Buttons.A;

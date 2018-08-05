@@ -1,7 +1,5 @@
 <Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml">
   <UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d">
-    <!-- Setting IsManipulationEnabled here tells the UserControl 
-         to execute the manipulation methods -->
     <Ellipse Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="132" Margin="62,0,0,135" Stroke="Black" VerticalAlignment="Bottom" Width="132" IsManipulationEnabled="true" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
   </UserControl>
   <Rectangle x:Name="rectangle_1" Tag="keycode:49" HorizontalAlignment="Left" Height="42" Margin="197,0,0,8" Stroke="Black" VerticalAlignment="Bottom" Width="45" Stylus.IsPressAndHoldEnabled="False" Opacity="0.3" Fill="White"/>
