@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScpDriverInterface;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -38,8 +39,6 @@ namespace osd_buttons
             }
             InitializeComponent();
         }
-        
-        int place = 1;
 
         Point StickStartPoint = new Point(0, 0);
         Point StickCurrentPoint = new Point(0, 0);
@@ -47,8 +46,12 @@ namespace osd_buttons
         bool left = false, right = false, up = false, down = false;
         double distance = 0, angle = 0;
 
+        ScpBus scpBus = new ScpBus();
+        X360Controller controller = new X360Controller();
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //MessageBox.Show(X360Buttons.A.GetType().ToString());
             loadCustomUi();
         }
 
@@ -207,6 +210,24 @@ namespace osd_buttons
                 UInt16 keyCode = UInt16.Parse(tag.Substring(8));
                 KeyboardOutput.performKeyDown(keyCode);
             }
+            if (tag.StartsWith("xinput:"))
+            {
+                string button = tag.Substring(7);
+                if (button.ToUpper() == "RT")
+                {
+                    controller.RightTrigger = 255;
+                }
+                else if (button.ToUpper() == "LT")
+                {
+                    controller.LeftTrigger = 255;
+                }
+                else
+                {
+                    controller.Buttons |= StringToX360(button);
+                }
+                
+                scpBus.Report(1, controller.GetReport());
+            }
         }
         private void button_TouchUp(object sender, EventArgs e)
         {
@@ -221,6 +242,24 @@ namespace osd_buttons
             {
                 UInt16 keyCode = UInt16.Parse(tag.Substring(8));
                 KeyboardOutput.performKeyRelease(keyCode);
+            }
+            if (tag.StartsWith("xinput:"))
+            {
+                string button = tag.Substring(7);
+                if (button.ToUpper() == "RT")
+                {
+                    controller.RightTrigger = 0;
+                }
+                else if (button.ToUpper() == "LT")
+                {
+                    controller.LeftTrigger = 0;
+                }
+                else
+                {
+                    controller.Buttons &= ~StringToX360(button);
+                }
+
+                scpBus.Report(1, controller.GetReport());
             }
         }
 
@@ -241,6 +280,7 @@ namespace osd_buttons
 
         private void close_App(object sender, RoutedEventArgs e)
         {
+            scpBus.UnplugAll();
             System.Windows.Application.Current.Shutdown();
         }
 
@@ -248,6 +288,7 @@ namespace osd_buttons
         {
             try
             {
+                bool xinputControls = false;
                 string content = File.ReadAllText("layout.xaml");
                 Grid grd = new Grid();
                 var grdEncoding = new ASCIIEncoding();
@@ -255,7 +296,6 @@ namespace osd_buttons
                 grd = (Grid)XamlReader.Load(new MemoryStream(grdBytes));
                 Grid.SetColumn(grd, 0);
                 Grid.SetRow(grd, 0);
-
                 custom_ui.Children.Add(grd);
                 Grid grid = (Grid)custom_ui.Children[0];
                 for(int i = 0; i < grid.Children.Count; i++)
@@ -264,22 +304,69 @@ namespace osd_buttons
                     {
                         grid.Children[i].AddHandler(Rectangle.TouchEnterEvent, new RoutedEventHandler(button_TouchDown));
                         grid.Children[i].AddHandler(Rectangle.TouchLeaveEvent, new RoutedEventHandler(button_TouchUp));
+                        if (((Rectangle)grid.Children[i]).Tag.ToString().StartsWith("xinput:"))
+                            xinputControls = true;
                     }
                     if (grid.Children[i].GetType().ToString() == "System.Windows.Shapes.Ellipse")
                     {
                         grid.Children[i].AddHandler(Ellipse.TouchEnterEvent, new RoutedEventHandler(button_TouchDown));
                         grid.Children[i].AddHandler(Ellipse.TouchLeaveEvent, new RoutedEventHandler(button_TouchUp));
+                        if (((Ellipse)grid.Children[i]).Tag.ToString().StartsWith("xinput:"))
+                            xinputControls = true;
                     }
                     if (grid.Children[i].GetType().ToString() == "System.Windows.Controls.Image")
                     {
                         grid.Children[i].AddHandler(Image.TouchEnterEvent, new RoutedEventHandler(button_TouchDown));
                         grid.Children[i].AddHandler(Image.TouchLeaveEvent, new RoutedEventHandler(button_TouchUp));
+                        if (((Image)grid.Children[i]).Tag.ToString().StartsWith("xinput:"))
+                            xinputControls = true;
                     }
                 }
+                if (xinputControls)
+                    scpBus.PlugIn(1);
             }
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        static X360Buttons StringToX360(string button)
+        {
+            switch(button.ToUpper())
+            {
+                case "A":
+                    return X360Buttons.A;
+                case "B":
+                    return X360Buttons.B;
+                case "X":
+                    return X360Buttons.X;
+                case "Y":
+                    return X360Buttons.Y;
+                case "START":
+                    return X360Buttons.Start;
+                case "BACK":
+                    return X360Buttons.Back;
+                case "LB":
+                    return X360Buttons.LeftBumper;
+                case "RB":
+                    return X360Buttons.RightBumper;
+                case "LS":
+                    return X360Buttons.LeftStick;
+                case "RS":
+                    return X360Buttons.RightStick;
+                case "UP":
+                    return X360Buttons.Up;
+                case "DOWN":
+                    return X360Buttons.Down;
+                case "LEFT":
+                    return X360Buttons.Left;
+                case "RIGHT":
+                    return X360Buttons.Right;
+                case "LOGO":
+                    return X360Buttons.Logo;
+                default:
+                    return X360Buttons.None;
             }
         }
 

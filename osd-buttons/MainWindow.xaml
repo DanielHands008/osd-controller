@@ -22,6 +22,7 @@
             <Image x:Name="image_close_yes" HorizontalAlignment="Center" Height="50" Margin="392,172,128,72" VerticalAlignment="Center" Width="128" Source="images/yes.png" MouseLeftButtonUp="close_App"/>
             <Image x:Name="image_close_no" HorizontalAlignment="Center" Height="50" Margin="128,172,392,72" VerticalAlignment="Center" Width="128" Source="images/no.png" MouseLeftButtonUp="hide_close_dialog"/>
         </Grid>
+        
 
     </Grid>
 </Window>
