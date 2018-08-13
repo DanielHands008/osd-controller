@@ -52,7 +52,7 @@ namespace osd_buttons
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show(X360Buttons.A.GetType().ToString());
-            loadCustomUi();
+            loadCustomUi("layouts/default/");
         }
 
         protected override void OnManipulationStarted(ManipulationStartedEventArgs e)
@@ -335,46 +335,49 @@ namespace osd_buttons
             System.Windows.Application.Current.Shutdown();
         }
 
-        private void loadCustomUi()
+        private void loadCustomUi(string layoutFile)
         {
             try
             {
                 bool xinputControls = false;
-                string content = File.ReadAllText("layout.xaml");
+                string content = File.ReadAllText(layoutFile + "layout.xaml");
+                string path = AppDomain.CurrentDomain.BaseDirectory + layoutFile;
+                content = content.Replace("$layoutdir/", path);
                 Grid grd = new Grid();
                 var grdEncoding = new ASCIIEncoding();
                 var grdBytes = grdEncoding.GetBytes(content);
                 grd = (Grid)XamlReader.Load(new MemoryStream(grdBytes));
                 Grid.SetColumn(grd, 0);
                 Grid.SetRow(grd, 0);
+                custom_ui.Children.Clear();
                 custom_ui.Children.Add(grd);
-                Grid grid = (Grid)custom_ui.Children[0];
-                for(int i = 0; i < grid.Children.Count; i++)
+                grd = (Grid)custom_ui.Children[0];
+                for(int i = 0; i < grd.Children.Count; i++)
                 {
-                    if (grid.Children[i].GetType().ToString() == "System.Windows.Shapes.Rectangle")
+                    if (grd.Children[i].GetType().ToString() == "System.Windows.Shapes.Rectangle")
                     {
-                        grid.Children[i].AddHandler(Rectangle.TouchEnterEvent, new RoutedEventHandler(button_TouchDown));
-                        grid.Children[i].AddHandler(Rectangle.TouchLeaveEvent, new RoutedEventHandler(button_TouchUp));
-                        if (((Rectangle)grid.Children[i]).Tag.ToString().StartsWith("xinput:"))
+                        grd.Children[i].AddHandler(Rectangle.TouchEnterEvent, new RoutedEventHandler(button_TouchDown));
+                        grd.Children[i].AddHandler(Rectangle.TouchLeaveEvent, new RoutedEventHandler(button_TouchUp));
+                        if (((Rectangle)grd.Children[i]).Tag.ToString().StartsWith("xinput:"))
                             xinputControls = true;
                     }
-                    if (grid.Children[i].GetType().ToString() == "System.Windows.Shapes.Ellipse")
+                    if (grd.Children[i].GetType().ToString() == "System.Windows.Shapes.Ellipse")
                     {
-                        grid.Children[i].AddHandler(Ellipse.TouchEnterEvent, new RoutedEventHandler(button_TouchDown));
-                        grid.Children[i].AddHandler(Ellipse.TouchLeaveEvent, new RoutedEventHandler(button_TouchUp));
-                        if (((Ellipse)grid.Children[i]).Tag.ToString().StartsWith("xinput:"))
+                        grd.Children[i].AddHandler(Ellipse.TouchEnterEvent, new RoutedEventHandler(button_TouchDown));
+                        grd.Children[i].AddHandler(Ellipse.TouchLeaveEvent, new RoutedEventHandler(button_TouchUp));
+                        if (((Ellipse)grd.Children[i]).Tag.ToString().StartsWith("xinput:"))
                             xinputControls = true;
                     }
-                    if (grid.Children[i].GetType().ToString() == "System.Windows.Controls.Image")
+                    if (grd.Children[i].GetType().ToString() == "System.Windows.Controls.Image")
                     {
-                        grid.Children[i].AddHandler(Image.TouchEnterEvent, new RoutedEventHandler(button_TouchDown));
-                        grid.Children[i].AddHandler(Image.TouchLeaveEvent, new RoutedEventHandler(button_TouchUp));
-                        if (((Image)grid.Children[i]).Tag.ToString().StartsWith("xinput:"))
+                        grd.Children[i].AddHandler(Image.TouchEnterEvent, new RoutedEventHandler(button_TouchDown));
+                        grd.Children[i].AddHandler(Image.TouchLeaveEvent, new RoutedEventHandler(button_TouchUp));
+                        if (((Image)grd.Children[i]).Tag.ToString().StartsWith("xinput:"))
                             xinputControls = true;
                     }
-                    if (grid.Children[i].GetType().ToString() == "System.Windows.Controls.UserControl")
+                    if (grd.Children[i].GetType().ToString() == "System.Windows.Controls.UserControl")
                     {
-                        UserControl controlField = (UserControl)grid.Children[i];
+                        UserControl controlField = (UserControl)grd.Children[i];
                         Ellipse controlContent = (Ellipse)controlField.Content;
                         if (controlContent.Tag.ToString().ToUpper().StartsWith("STICK:X360"))
                             xinputControls = true;

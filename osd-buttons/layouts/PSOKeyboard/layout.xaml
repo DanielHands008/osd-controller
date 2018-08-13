@@ -13,13 +13,13 @@
   <Rectangle x:Name="rectangle_9" Tag="keycode:57" HorizontalAlignment="Left" Height="42" Margin="646,0,0,8" Stroke="Black" VerticalAlignment="Bottom" Width="44" Stylus.IsPressAndHoldEnabled="False" Opacity="0.3" Fill="White"/>
   <Rectangle x:Name="rectangle_0" Tag="keycode:48" HorizontalAlignment="Left" Height="42" Margin="702,0,0,8" Stroke="Black" VerticalAlignment="Bottom" Width="45" Stylus.IsPressAndHoldEnabled="False" Opacity="0.3" Fill="White"/>
 
-  <Image x:Name="image_enter" Tag="keycode:13" HorizontalAlignment="Right" Height="64" Margin="0,0,32,263" VerticalAlignment="Bottom" Width="64" Source="images/enter.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
-  <Image x:Name="image_end" Tag="keycode:35" HorizontalAlignment="Right" Height="64" Margin="0,0,32,75" VerticalAlignment="Bottom" Width="64" Source="images/end.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
-  <Image x:Name="image_ctrl" Tag="keycode:162" HorizontalAlignment="Left" Height="64" Margin="32,0,0,285" VerticalAlignment="Bottom" Width="64" Source="images/ctrl.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
-  <Image x:Name="image_esc" Tag="keycode:27" HorizontalAlignment="Right" Height="64" Margin="0,0,220,263" VerticalAlignment="Bottom" Width="64" Source="images/esc.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
-  <Image x:Name="image_f12" Tag="keycode:123" HorizontalAlignment="Right" Height="64" Margin="0,0,220,75" VerticalAlignment="Bottom" Width="64" Source="images/f12.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
-  <Image x:Name="image_up" Tag="keycode:38" HorizontalAlignment="Right" Height="94" Margin="0,0,136,203" VerticalAlignment="Bottom" Width="44" Source="images/up.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
-  <Image x:Name="image_down" Tag="keycode:40" HorizontalAlignment="Right" Height="94" Margin="0,0,136,105" VerticalAlignment="Bottom" Width="44" Source="images/down.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
-  <Image x:Name="image_left" Tag="keycode:37" HorizontalAlignment="Right" Height="44" Margin="0,0,160,179" VerticalAlignment="Bottom" Width="94" Source="images/left.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
-  <Image x:Name="image_right" Tag="keycode:39" HorizontalAlignment="Right" Height="44" Margin="0,0,62,179" VerticalAlignment="Bottom" Width="94" Source="images/right.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_enter" Tag="keycode:13" HorizontalAlignment="Right" Height="64" Margin="0,0,32,263" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/enter.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_end" Tag="keycode:35" HorizontalAlignment="Right" Height="64" Margin="0,0,32,75" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/end.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_ctrl" Tag="keycode:162" HorizontalAlignment="Left" Height="64" Margin="32,0,0,285" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/ctrl.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_esc" Tag="keycode:27" HorizontalAlignment="Right" Height="64" Margin="0,0,220,263" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/esc.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_f12" Tag="keycode:123" HorizontalAlignment="Right" Height="64" Margin="0,0,220,75" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/f12.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_up" Tag="keycode:38" HorizontalAlignment="Right" Height="94" Margin="0,0,136,203" VerticalAlignment="Bottom" Width="44" Source="$layoutdir/up.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_down" Tag="keycode:40" HorizontalAlignment="Right" Height="94" Margin="0,0,136,105" VerticalAlignment="Bottom" Width="44" Source="$layoutdir/down.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_left" Tag="keycode:37" HorizontalAlignment="Right" Height="44" Margin="0,0,160,179" VerticalAlignment="Bottom" Width="94" Source="$layoutdir/left.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_right" Tag="keycode:39" HorizontalAlignment="Right" Height="44" Margin="0,0,62,179" VerticalAlignment="Bottom" Width="94" Source="$layoutdir/right.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
 </Grid>

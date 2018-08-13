@@ -143,43 +143,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\ctrl.png" />
-    <Resource Include="images\down.png" />
-    <Resource Include="images\end.png" />
-    <Resource Include="images\enter.png" />
-    <Resource Include="images\esc.png" />
-    <Resource Include="images\f12.png" />
-    <Resource Include="images\left.png" />
-    <Resource Include="images\right.png" />
-    <Resource Include="images\up.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\close.png" />
     <Resource Include="images\keyboard.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\no.png" />
     <Resource Include="images\yes.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\a.png" />
-    <Resource Include="images\b.png" />
-    <Resource Include="images\back.png" />
-    <Resource Include="images\lb.png" />
-    <Resource Include="images\logo.png" />
-    <Resource Include="images\lt.png" />
-    <Resource Include="images\RB.png" />
-    <Resource Include="images\rt.png" />
-    <Resource Include="images\start.png" />
-    <Resource Include="images\x.png" />
-    <Resource Include="images\y.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\ls.png" />
-    <Resource Include="images\rs.png" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)layout.xaml" "$(TargetDir)layout.xaml"</PostBuildEvent>
+    <PostBuildEvent>XCOPY "$(ProjectDir)layouts" "$(TargetDir)layouts\" /S /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>
