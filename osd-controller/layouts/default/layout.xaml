@@ -1,0 +1,25 @@
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml">
+  <UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d">
+    <Ellipse Tag="stick:x360.left" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="132" Margin="62,0,0,135" Stroke="Black" VerticalAlignment="Bottom" Width="132" IsManipulationEnabled="true" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  </UserControl>
+  <UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d">
+    <Ellipse Tag="stick:x360.right" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="132" Margin="0,0,62,135" Stroke="Black" VerticalAlignment="Bottom" Width="132" IsManipulationEnabled="true" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  </UserControl>
+  <Image x:Name="image_xinput_ls" Tag="xinput:ls" HorizontalAlignment="Right" Height="64" Margin="0,0,175,90" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/ls.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_xinput_rs" Tag="xinput:rs" HorizontalAlignment="Left" Height="64" Margin="175,0,0,90" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/rs.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_xinput_a" Tag="xinput:a" HorizontalAlignment="Right" Height="64" Margin="0,0,96,292" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/a.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_xinput_b" Tag="xinput:b" HorizontalAlignment="Right" Height="64" Margin="0,0,32,356" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/b.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_xinput_x" Tag="xinput:x" HorizontalAlignment="Right" Height="64" Margin="0,0,160,356" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/x.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_xinput_y" Tag="xinput:y" HorizontalAlignment="Right" Height="64" Margin="0,0,96,425" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/y.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_xinput_up" Tag="xinput:up" HorizontalAlignment="Left" Height="94" Margin="104,0,0,395" VerticalAlignment="Bottom" Width="44" Source="$layoutdir/up.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_xinput_down" Tag="xinput:down" HorizontalAlignment="Left" Height="94" Margin="104,0,0,294" VerticalAlignment="Bottom" Width="44" Source="$layoutdir/down.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_xinput_left" Tag="xinput:left" HorizontalAlignment="Left" Height="44" Margin="30,0,0,369" VerticalAlignment="Bottom" Width="94" Source="$layoutdir/left.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_xinput_right" Tag="xinput:right" HorizontalAlignment="Left" Height="44" Margin="129,0,0,369" VerticalAlignment="Bottom" Width="94" Source="$layoutdir/right.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_xinput_rb" Tag="xinput:rb" HorizontalAlignment="Right" Height="64" Margin="0,0,32,524" VerticalAlignment="Bottom" Width="113" Source="$layoutdir/rb.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_xinput_rt" Tag="xinput:rt" HorizontalAlignment="Right" Height="113" Margin="0,0,180,499" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/Rt.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_xinput_lb" Tag="xinput:lb" HorizontalAlignment="Left" Height="64" Margin="32,0,0,524" VerticalAlignment="Bottom" Width="113" Source="$layoutdir/lB.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_xinput_lt" Tag="xinput:lt" HorizontalAlignment="Left" Height="113" Margin="180,0,0,499" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/lt.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False"/>
+  <Image x:Name="image_xinput_back" Tag="xinput:back" Height="64" Margin="-134,0,0,25" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/back.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False" HorizontalAlignment="Center"/>
+  <Image x:Name="image_xinput_logo" Tag="xinput:logo" Height="64" Margin="0,0,0,25" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/logo.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False" HorizontalAlignment="Center"/>
+  <Image x:Name="image_xinput_start" Tag="xinput:start" Height="64" Margin="134,0,0,25" VerticalAlignment="Bottom" Width="64" Source="$layoutdir/start.png" Opacity="0.3" Stylus.IsPressAndHoldEnabled="False" HorizontalAlignment="Center"/>
+</Grid>
