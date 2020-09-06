@@ -131,7 +131,7 @@ namespace osd_buttons
         {
             performKeyDown(key);
             Thread.Sleep(20);
-            performKeyDown(key);
+            performKeyRelease(key);
         }
 
         private static ushort scancodeFromVK(uint vkey)
