@@ -38,6 +38,7 @@ namespace osd_buttons
                 Environment.Exit(0);
             }
             InitializeComponent();
+
         }
 
         Point StickStartPoint = new Point(0, 0);
@@ -51,7 +52,31 @@ namespace osd_buttons
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            loadCustomUi("layouts/default/");
+            GetLayouts();
+        }
+
+        private void GetLayouts()
+        {
+            string[] layouts = Directory.GetDirectories("layouts", "*", SearchOption.TopDirectoryOnly);
+            LayoutList.Rows = layouts.Length;
+            for (int i = 0; i < layouts.Length; ++i)
+            {
+                string[] layoutPathParts = layouts[i].Split('\\');
+                Button button = new Button()
+                {
+                    Width = 200,
+                    Content = string.Format(layoutPathParts[layoutPathParts.Length - 1]),
+                    Tag = layouts[i] + "\\"
+                };
+                button.Click += new RoutedEventHandler(LayoutClicked);
+                LayoutList.Children.Add(button);
+            }
+        }
+
+        private void LayoutClicked(object sender, RoutedEventArgs e)
+        {
+            LayoutListUI.Visibility = Visibility.Collapsed;
+            loadCustomUi((sender as Button).Tag.ToString());
         }
 
         protected override void OnManipulationStarted(ManipulationStartedEventArgs e)
